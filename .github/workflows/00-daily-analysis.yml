@@ -563,3 +563,10 @@ jobs:
             echo "📜 最近日志（最后 30 行）:"
             tail -30 logs/stock_analysis_*.log 2>/dev/null || echo "无日志"
           fi
+- name: Send To WeChat
+  run: |
+    curl -X POST \
+      "https://sctapi.ftqq.com/${{ secrets.SERVERCHAN_SENDKEY }}.send" \
+      -d "title=股票分析完成" \
+      -d "desp=今日分析已经完成，请查看GitHub运行结果。"
+``
